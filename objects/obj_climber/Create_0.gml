@@ -18,3 +18,11 @@ pick = instance_create_layer(x+pick_xoff, y+pick_yoff, "Player", obj_pick);
 pick.climber=self;
 
 tilemap = layer_tilemap_get_id("Collision");
+
+// States
+enum PlayerState {
+	IDLE,
+	RUN,
+	JUMP,
+	JUMP_SQUAT,
+}
