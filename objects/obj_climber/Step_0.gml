@@ -15,8 +15,8 @@ if(tilemap_get_at_pixel(tilemap, bbox_h+h_speed, bbox_top) != 0 || tilemap_get_a
 x+=h_speed;
 
 //Vertical Movement
-var grounded = (tilemap_get_at_pixel(tilemap, bbox_left, y) != 0 || tilemap_get_at_pixel(tilemap, bbox_right, y)!= 0);
-if(grounded) {
+
+if(is_grounded()) {
 	if(jump) {
 		v_speed = -jump_speed;
 	}
@@ -24,10 +24,14 @@ if(grounded) {
 	v_speed += fall_speed;
 }
 
-if(v_speed > 0) bbox_v = bbox_bottom; else bbox_v = bbox_top;
-if(tilemap_get_at_pixel(tilemap, bbox_left, bbox_v+v_speed) != 0 || tilemap_get_at_pixel(tilemap, bbox_right, bbox_v+v_speed)!= 0) {
-	if(v_speed > 0) y = y-(y % 16) + 16 - (bbox_bottom-y);
-	else y=y-(y % 16) - 16 - (bbox_top - y);
+set_vertical_check();
+if(is_vertical_tile_exist()) {
+	if(v_speed > 0) {
+		set_vertical_when_hitting_ground();
+	}
+	else {
+		set_vertical_when_hitting_roof();
+	}
 	v_speed = 0;
 }
 
@@ -44,4 +48,24 @@ if(h_speed != 0) {
 	}
 } else {
 	sprite_index=spr_climber_idle;	
+}
+
+function is_grounded() {
+	return (tilemap_get_at_pixel(tilemap, bbox_left, y) != 0 || tilemap_get_at_pixel(tilemap, bbox_right, y)!= 0);
+}
+
+function set_vertical_check() {
+	if(v_speed > 0) bbox_v = bbox_bottom; else bbox_v = bbox_top;
+}
+
+function is_vertical_tile_exist() {
+	return tilemap_get_at_pixel(tilemap, bbox_left, bbox_v+v_speed) != 0 || tilemap_get_at_pixel(tilemap, bbox_right, bbox_v+v_speed)!= 0;
+}
+
+function set_vertical_when_hitting_ground() {
+	y = y-(y % 16) + 16 - (bbox_bottom-y);
+}
+
+function set_vertical_when_hitting_roof() {
+	y = y-(y % 16) - 16 - (bbox_top - y);
 }
