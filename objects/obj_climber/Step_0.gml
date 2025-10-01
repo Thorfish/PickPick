@@ -38,7 +38,7 @@ if(is_vertical_tile_exist()) {
 }
 
 y+=v_speed;
-
+show_debug_message(v_speed);
 #endregion
 #region Animation
 if(h_speed != 0) {
@@ -66,11 +66,11 @@ function is_horizontal_tile_exist() {
 }
 
 function set_horizontal_when_moving_right() {
-	x = x-(x % 16) + 15 - (bbox_right-x);
+	x = x-(x % TILE_PIXEL_SIZE) + 15 - (bbox_right-x);
 }
 
 function set_horizontal_when_moving_left() {
-	x=x-(x % 16) - (bbox_left - x);
+	x=x-(x % TILE_PIXEL_SIZE) - (bbox_left - x);
 }
 
 /// @description Sets if it should check collision up or down
