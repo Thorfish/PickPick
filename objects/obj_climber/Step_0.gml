@@ -29,13 +29,17 @@ if(grounded) {
 
 if(v_speed > 0) bbox_v = bbox_bottom; else bbox_v = bbox_top;
 if(tilemap_get_at_pixel(tilemap, bbox_left, bbox_v+v_speed) != 0 || tilemap_get_at_pixel(tilemap, bbox_right, bbox_v+v_speed)!= 0) {
-	if(v_speed > 0) y = y-(y % 16) + 16 - (bbox_bottom-y);
-	else y=y-(y % 16) - 16 - (bbox_top - y);
+	if(v_speed > 0) {
+		set_vertical_when_hitting_ground();
+	}
+	else {
+		set_vertical_when_hitting_roof();
+	}
 	v_speed = 0;
 }
 
 y+=v_speed;
-
+show_debug_message(v_speed);
 #endregion
 #region Animation
 if(h_speed != 0) {
@@ -63,11 +67,11 @@ function is_horizontal_tile_exist() {
 }
 
 function set_horizontal_when_moving_right() {
-	x = x-(x % 16) + 15 - (bbox_right-x);
+	x = x-(x % TILE_PIXEL_SIZE) + 15 - (bbox_right-x);
 }
 
 function set_horizontal_when_moving_left() {
-	x=x-(x % 16) - (bbox_left - x);
+	x=x-(x % TILE_PIXEL_SIZE) - (bbox_left - x);
 }
 
 /// @description Sets if it should check collision up or down
