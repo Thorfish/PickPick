@@ -1,6 +1,6 @@
 image_speed=0;
 climber = noone;
-hold_radius = 8;
+hold_radius = 10;
 dir = 0;
 center_x = 0;
 center_y = 0;

@@ -17,4 +17,4 @@ pick_yoff = -12;
 pick = instance_create_layer(x+pick_xoff, y+pick_yoff, "Player", obj_pick);
 pick.climber=self;
 
-tilemap = layer_tilemap_get_id("Snow_Tiles");
+tilemap = layer_tilemap_get_id("Collision");
