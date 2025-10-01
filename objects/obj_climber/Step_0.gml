@@ -29,8 +29,12 @@ if(grounded) {
 
 if(v_speed > 0) bbox_v = bbox_bottom; else bbox_v = bbox_top;
 if(tilemap_get_at_pixel(tilemap, bbox_left, bbox_v+v_speed) != 0 || tilemap_get_at_pixel(tilemap, bbox_right, bbox_v+v_speed)!= 0) {
-	if(v_speed > 0) y = y-(y % 16) + 16 - (bbox_bottom-y);
-	else y=y-(y % 16) - 16 - (bbox_top - y);
+	if(v_speed > 0) {
+		set_vertical_when_hitting_ground();
+	}
+	else {
+		set_vertical_when_hitting_roof();
+	}
 	v_speed = 0;
 }
 
