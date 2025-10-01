@@ -6,7 +6,7 @@ var jump = keyboard_check_pressed(vk_space);
 //Horizontal Movement
 h_speed = h_axis * run_speed;
 set_horizontal_check();
-if(tilemap_get_at_pixel(tilemap, bbox_h+h_speed, bbox_top) != 0 || tilemap_get_at_pixel(tilemap, bbox_h+h_speed, bbox_bottom-1)!= 0) {
+if(is_horizontal_tile_exist()) {
 	if(h_speed > 0) {
 		set_horizontal_when_moving_right();
 	}
@@ -18,8 +18,7 @@ if(tilemap_get_at_pixel(tilemap, bbox_h+h_speed, bbox_top) != 0 || tilemap_get_a
 x+=h_speed;
 
 //Vertical Movement
-var grounded = (tilemap_get_at_pixel(tilemap, bbox_left, y) != 0 || tilemap_get_at_pixel(tilemap, bbox_right, y)!= 0);
-if(grounded) {
+if(is_grounded()) {
 	if(jump) {
 		v_speed = -jump_speed;
 	}
@@ -27,8 +26,8 @@ if(grounded) {
 	v_speed += fall_speed;
 }
 
-if(v_speed > 0) bbox_v = bbox_bottom; else bbox_v = bbox_top;
-if(tilemap_get_at_pixel(tilemap, bbox_left, bbox_v+v_speed) != 0 || tilemap_get_at_pixel(tilemap, bbox_right, bbox_v+v_speed)!= 0) {
+set_vertical_check();
+if(is_vertical_tile_exist()) {
 	if(v_speed > 0) {
 		set_vertical_when_hitting_ground();
 	}
