@@ -2,9 +2,9 @@
 #macro DEBUG 0
 
 //Initialise Properties
-run_speed = 4;
-jump_speed = 10;
-fall_speed = 1;
+run_speed = PLAYER_RUN_SPEED;
+jump_speed = PLAYER_JUMP_SPEED;
+fall_speed = PLAYER_FALL_SPEED;
 h_speed = 0;
 v_speed = 0;
 
