@@ -27,16 +27,12 @@ if(grounded) {
 if(v_speed > 0) bbox_v = bbox_bottom; else bbox_v = bbox_top;
 if(tilemap_get_at_pixel(tilemap, bbox_left, bbox_v+v_speed) != 0 || tilemap_get_at_pixel(tilemap, bbox_right, bbox_v+v_speed)!= 0) {
 	if(v_speed > 0) y = y-(y % 16) + 16 - (bbox_bottom-y);
-	else y=y-(y % 16) - (bbox_top - y);
+	else y=y-(y % 16) - 16 - (bbox_top - y);
 	v_speed = 0;
 }
 
 y+=v_speed;
 
-
-//Pick Update
-pick.x = x+pick_xoff;
-pick.y = y+pick_yoff;
 #endregion
 #region Animation
 if(h_speed != 0) {
