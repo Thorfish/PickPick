@@ -32,10 +32,20 @@ if(tilemap_get_at_pixel(tilemap, bbox_left, bbox_v+v_speed) != 0 || tilemap_get_
 }
 
 y+=v_speed;
+
+
+//Pick Update
+pick.x = x+pick_xoff;
+pick.y = y+pick_yoff;
 #endregion
 #region Animation
-if(h_speed > 0) {
-	image_xscale = 1;
-} else if (h_speed < 0) {
-	image_xscale = -1;
+if(h_speed != 0) {
+	sprite_index = spr_climber_run;
+	if(h_speed > 0) {
+		image_xscale=1;
+	} else {
+		image_xscale=-1;
+	}
+} else {
+	sprite_index=spr_climber_idle;	
 }
