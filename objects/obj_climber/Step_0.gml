@@ -23,7 +23,7 @@ if(is_horizontal_tile_exist()) {
 if(is_grounded()) {
 	if(jump) {
 		player_state = PlayerState.JUMP_SQUAT;
-		alarm[0] = 30;
+		alarm[0] = PLAYER_JUMP_SQUAT;
 	}
 } else {
 	v_speed += fall_speed;
@@ -42,7 +42,8 @@ if(is_vertical_tile_exist()) {
 
 switch player_state {
 	case PlayerState.JUMP_SQUAT:
-		h_speed = 0;
+		//h_speed = 0;
+		break;
 }
 
 
@@ -78,9 +79,11 @@ switch player_state {
 		} else if (h_speed = 0) {
 			sprite_index = spr_climber_idle;
 		}
+		break;
 	case PlayerState.JUMP_SQUAT:
 		sprite_index = spr_climber_jump;
 		image_index = 0;
+		break;
 }
 show_debug_message(player_state);
 

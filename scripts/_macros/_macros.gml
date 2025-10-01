@@ -2,6 +2,7 @@
 #macro PLAYER_FALL_SPEED 0.4
 #macro PLAYER_JUMP_SPEED 6
 #macro PLAYER_RUN_SPEED 4
+#macro PLAYER_JUMP_SQUAT 5
 #endregion
 
 #region Tile variables
