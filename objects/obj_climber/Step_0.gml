@@ -2,7 +2,10 @@
 var h_axis = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 var jump = keyboard_check_pressed(vk_space);
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #region Movement
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 //Horizontal Movement
 h_speed = h_axis * run_speed;
 set_horizontal_check();
@@ -15,12 +18,12 @@ if(is_horizontal_tile_exist()) {
 	}
 	h_speed = 0;
 }
-x+=h_speed;
 
 //Vertical Movement
 if(is_grounded()) {
 	if(jump) {
-		v_speed = -jump_speed;
+		player_state = PlayerState.JUMP_SQUAT;
+		alarm[0] = 30;
 	}
 } else {
 	v_speed += fall_speed;
@@ -37,10 +40,23 @@ if(is_vertical_tile_exist()) {
 	v_speed = 0;
 }
 
+switch player_state {
+	case PlayerState.JUMP_SQUAT:
+		h_speed = 0;
+}
+
+
+x+=h_speed;
 y+=v_speed;
-show_debug_message(v_speed);
+
+
+
 #endregion
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #region Animation
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 if(h_speed != 0) {
 	sprite_index = spr_climber_run;
 	if(h_speed > 0) {
@@ -52,6 +68,26 @@ if(h_speed != 0) {
 	sprite_index=spr_climber_idle;	
 }
 
+switch player_state {
+	case PlayerState.NEUTRAL:
+		if (v_speed != 0) {
+			sprite_index = spr_climber_jump;
+			image_index = 1;
+		} else if (h_speed != 0) {
+			sprite_index = spr_climber_run;
+		} else if (h_speed = 0) {
+			sprite_index = spr_climber_idle;
+		}
+	case PlayerState.JUMP_SQUAT:
+		sprite_index = spr_climber_jump;
+		image_index = 0;
+}
+show_debug_message(player_state);
+
+#endregion
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#region Functions
+///////////////////////////////////////////////////////////////////////////////////////////////////
 function is_grounded() {
 	return (tilemap_get_at_pixel(tilemap, bbox_left, y) != 0 || tilemap_get_at_pixel(tilemap, bbox_right, y)!= 0);
 }
@@ -89,3 +125,9 @@ function set_vertical_when_hitting_ground() {
 function set_vertical_when_hitting_roof() {
 	y = y-(y % TILE_PIXEL_SIZE) - TILE_PIXEL_SIZE - (bbox_top - y);
 }
+
+function do_jump() {
+	v_speed = -jump_speed;
+}
+
+#endregion

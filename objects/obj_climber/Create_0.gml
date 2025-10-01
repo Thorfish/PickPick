@@ -21,8 +21,9 @@ tilemap = layer_tilemap_get_id("Collision");
 
 // States
 enum PlayerState {
-	IDLE,
-	RUN,
-	JUMP,
+	NEUTRAL,
 	JUMP_SQUAT,
+	CLIMB,
 }
+
+player_state = PlayerState.NEUTRAL;
