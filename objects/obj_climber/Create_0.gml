@@ -10,20 +10,30 @@ h_max=6;
 
 v_speed_f = 0.0;
 v_speed = 0;
-v_max=6;
+v_max=8;
 
 opposite_move_factor = 4;
 stationary_move_factor = 1.2;
-further_move_factor = 0.5;
+further_move_factor = 0.4;
+
+rising_fall_factor = 0.6;
+falling_fall_factor = 1.4;
+peak_fall_factor = 0.4;
+peak_window = 0.5;
 
 ground_friction = 0.2;
 air_friction = 0.05;
 
+isJumping=false;
 
-jump_slow_factor = 1;
+jump_slow_factor = 2;
 
 bbox_h=bbox_right;
 bbox_v=bbox_bottom;
+
+//Climbing Values
+climb_max = 6;
+
 
 //Pick
 pick_xoff = 7;

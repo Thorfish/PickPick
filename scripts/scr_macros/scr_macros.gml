@@ -1,4 +1,4 @@
-#macro DEBUG 1
+#macro DEBUG 0
 
 #region Player variables
 #macro PLAYER_FALL_ACC 0.4

@@ -3,13 +3,18 @@ function scr_player_neutral(){
 	var jump = keyboard_check_pressed(vk_space);
 	var grounded = is_grounded();
 	var walk_acc = h_axis * run_acc;
-	var net_acc = 0;
+	var h_net_acc = 0;
+	var v_net_acc = 0;
+	
+	if(keyboard_check(vk_space)==false) {
+		isJumping=false;	
+	}
 	
 	#region Determine Net Acceleration
 	switch(sign(h_speed_f * walk_acc)) {
 		//Acceleration in opposite to current direction
 		case -1: 
-			net_acc = walk_acc*opposite_move_factor;
+			h_net_acc = walk_acc*opposite_move_factor;
 			break;
 		//Either stopped walking or moving from stationary
 		case 0:
@@ -18,33 +23,43 @@ function scr_player_neutral(){
 				//Just stopped walking
 				if(grounded) {
 					//Ground Friction
-					net_acc = -1 * sign(h_speed_f) * min(ground_friction, abs(h_speed_f));
+					h_net_acc = -1 * sign(h_speed_f) * min(ground_friction, abs(h_speed_f));
 				} else {
 					//Air friction	
-					net_acc = -1 * sign(h_speed_f) * min(air_friction, abs(h_speed_f));
+					h_net_acc = -1 * sign(h_speed_f) * min(air_friction, abs(h_speed_f));
 				}
 			} else {
 				//Moving from stationary
-				net_acc = walk_acc*stationary_move_factor;
+				h_net_acc = walk_acc*stationary_move_factor;
 			}
 	
 			break;
 		//Accelerating in the direction you are walking.
 		case 1:
-			net_acc = walk_acc*further_move_factor;
+			h_net_acc = walk_acc*further_move_factor;
 			break;
 	}
 	
-	h_speed_f = clamp(h_speed_f + net_acc, -h_max, h_max);
+
 	
 	if(grounded) {
 		if(jump) {
+			h_speed/=jump_slow_factor;
 			player_state = PlayerState.JUMP_SQUAT;
 			alarm[0] = PLAYER_JUMP_SQUAT;
 		}
 	} else {
-		v_speed_f += fall_acc;
+		if(abs(v_speed_f) < peak_window) {
+			v_net_acc = fall_acc*peak_fall_factor;
+		} else if(v_speed_f >= 0 || isJumping==false) {
+			v_net_acc = fall_acc*falling_fall_factor;
+		} else {
+			v_net_acc = fall_acc*rising_fall_factor;
+		}
 	}
+	
+	h_speed_f = clamp(h_speed_f + h_net_acc, -h_max, h_max);
+	v_speed_f = clamp(v_speed_f + v_net_acc, -v_max, v_max);
 	
 	round_speed();
 	#endregion
@@ -153,6 +168,7 @@ function set_vertical_when_hitting_roof() {
 
 function do_jump() {
 	v_speed_f = -jump_impulse;
+	isJumping=true;
 }
 
 function round_speed() {
