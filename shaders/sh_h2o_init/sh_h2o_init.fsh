@@ -28,9 +28,16 @@ uniform vec2 u_texel;
 #define WATER_COLOUR vec4(0.157, 0.361, 0.804, 1.0)
 #define AIR_COLOUR vec4(0.0, 0.0, 0.0, 0.0)
 
+bool approx(float val, float val2) {
+	return abs(val-val2) < 0.01;	
+}
+
 void main() {
     vec4 cell = texture2D(u_texture, v_vTexcoord);
+	if (approx(cell.STATE, FALLING)) {
+		cell.STATE = FREE;
+	}
 	
-	cell.STATE = FREE;
 	gl_FragColor=vec4(cell.TEMPERATURE, cell.STATE, cell.MATTER, 1);
 }
+
