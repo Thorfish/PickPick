@@ -3,8 +3,8 @@
   "%Name":"sh_h2o_render",
   "name":"sh_h2o_render",
   "parent":{
-    "name":"Shaders",
-    "path":"folders/Shaders.yy",
+    "name":"sh_h2o",
+    "path":"folders/Shaders/sh_h2o.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",

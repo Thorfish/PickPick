@@ -2,9 +2,15 @@
 run_acc = PLAYER_RUN_ACC;
 jump_impulse = PLAYER_JUMP_IMPULSE;
 fall_acc = PLAYER_FALL_ACC;
-h_speed = 0;
-h_max=8;
+
+//Movement Values
+h_speed_f = 0.0; //h_speed_f is the floating point value of h_speed. It is used to allow for floating point accelerations to be applied.
+h_speed = 0; // h_speed is strictly integer and used for collisions and movement. This is the true value.
+h_max=6;
+
+v_speed_f = 0.0;
 v_speed = 0;
+v_max=6;
 
 opposite_move_factor = 4;
 stationary_move_factor = 1.2;

@@ -2,11 +2,11 @@ function scr_player_neutral(){
 	var h_axis = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 	var jump = keyboard_check_pressed(vk_space);
 	var grounded = is_grounded();
-	#region Basic Movement
-	//Horizontal Movement
 	var walk_acc = h_axis * run_acc;
-	var net_acc;
-	switch(sign(h_speed * walk_acc)) {
+	var net_acc = 0;
+	
+	#region Determine Net Acceleration
+	switch(sign(h_speed_f * walk_acc)) {
 		//Acceleration in opposite to current direction
 		case -1: 
 			net_acc = walk_acc*opposite_move_factor;
@@ -18,10 +18,10 @@ function scr_player_neutral(){
 				//Just stopped walking
 				if(grounded) {
 					//Ground Friction
-					net_acc = -1 * sign(h_speed) * min(ground_friction, abs(h_speed));
+					net_acc = -1 * sign(h_speed_f) * min(ground_friction, abs(h_speed_f));
 				} else {
 					//Air friction	
-					net_acc = -1 * sign(h_speed) * min(air_friction, abs(h_speed));
+					net_acc = -1 * sign(h_speed_f) * min(air_friction, abs(h_speed_f));
 				}
 			} else {
 				//Moving from stationary
@@ -35,7 +35,20 @@ function scr_player_neutral(){
 			break;
 	}
 	
-	h_speed = clamp(h_speed + net_acc, -h_max, h_max);
+	h_speed_f = clamp(h_speed_f + net_acc, -h_max, h_max);
+	
+	if(grounded) {
+		if(jump) {
+			player_state = PlayerState.JUMP_SQUAT;
+			alarm[0] = PLAYER_JUMP_SQUAT;
+		}
+	} else {
+		v_speed_f += fall_acc;
+	}
+	
+	round_speed();
+	#endregion
+	#region Resolve Movement
 	set_horizontal_check();
 	if(is_horizontal_tile_exist()) {
 		if(h_speed > 0) {
@@ -44,18 +57,12 @@ function scr_player_neutral(){
 		else {
 			set_horizontal_when_moving_left();
 		}
+		h_speed_f=0;
 		h_speed = 0;
 	}
 
 	//Vertical Movement
-	if(grounded) {
-		if(jump) {
-			player_state = PlayerState.JUMP_SQUAT;
-			alarm[0] = PLAYER_JUMP_SQUAT;
-		}
-	} else {
-		v_speed += fall_acc;
-	}
+	
 
 	set_vertical_check();
 	if(is_vertical_tile_exist()) {
@@ -65,8 +72,10 @@ function scr_player_neutral(){
 		else {
 			set_vertical_when_hitting_roof();
 		}
-		v_speed = 0;
+		v_speed=0;
+		v_speed_f = 0;
 	}
+	
 	#endregion
 	#region Swing
 	if(mouse_check_button(mb_left)) {
@@ -74,11 +83,17 @@ function scr_player_neutral(){
 		pick.alarm[0]=5;
 		if(target.check_tile_collisions()) {
 			player_state = PlayerState.CLIMB;
+			h_speed_f = 0;
+			v_speed_f = 0;
 			h_speed = 0;
 			v_speed = 0;
 		}
 	}
 	#endregion
+	
+	update_pos();
+	
+	#region Animation
 	if(h_speed > 0) {
 		image_xscale=1;
 	} else if(h_speed < 0) {
@@ -93,7 +108,7 @@ function scr_player_neutral(){
 	} else if (h_speed = 0) {
 		sprite_index = spr_climber_idle;
 	}
-	
+	#endregion
 }
 
 
@@ -137,6 +152,16 @@ function set_vertical_when_hitting_roof() {
 }
 
 function do_jump() {
-	v_speed = -jump_impulse;
+	v_speed_f = -jump_impulse;
+}
+
+function round_speed() {
+	h_speed = round(h_speed_f);
+	v_speed = round(v_speed_f);
+}
+
+function update_pos() {
+	x+=h_speed;
+	y+=v_speed;
 }
 #endregion

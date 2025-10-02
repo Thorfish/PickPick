@@ -16,11 +16,13 @@ else sprite_index = spr_pick_rev;
 face = floor(dir*image_xscale/30);
 image_index = face;
 
+
+//Set Target Position
 target.x=x+lengthdir_x(hit_radius, dir);
 target.y=y+lengthdir_y(hit_radius, dir);
 
-//////////////////////////////////////////////
 
+//Swing Particle Effect
 part_x=x+lengthdir_x(part_radius, dir);
 part_y=y+lengthdir_y(part_radius, dir);
 

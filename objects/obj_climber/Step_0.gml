@@ -15,12 +15,6 @@ switch player_state {
 		break;
 }
 
-//Update Position
-x+=h_speed;
-y+=v_speed;
-
-
-
 #endregion
 
 #region Functions
