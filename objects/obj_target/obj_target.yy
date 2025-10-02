@@ -1,13 +1,11 @@
 {
   "$GMObject":"",
-  "%Name":"obj_pick",
+  "%Name":"obj_target",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_pick",
+  "name":"obj_target",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
@@ -32,9 +30,9 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_pick",
-    "path":"sprites/spr_pick/spr_pick.yy",
+    "name":"spr_target",
+    "path":"sprites/spr_target/spr_target.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

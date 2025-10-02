@@ -42,7 +42,7 @@ if(is_vertical_tile_exist()) {
 
 switch player_state {
 	case PlayerState.JUMP_SQUAT:
-		//h_speed = 0;
+		h_speed/=2;
 		break;
 }
 
@@ -58,20 +58,16 @@ y+=v_speed;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-if(h_speed != 0) {
-	sprite_index = spr_climber_run;
-	if(h_speed > 0) {
-		image_xscale=1;
-	} else {
-		image_xscale=-1;
-	}
-} else {
-	sprite_index=spr_climber_idle;	
+if(h_speed > 0) {
+	image_xscale=1;
+} else if(h_speed < 0) {
+	image_xscale=-1;
 }
+
 
 switch player_state {
 	case PlayerState.NEUTRAL:
-		if (v_speed != 0) {
+		if (!is_grounded()) {
 			sprite_index = spr_climber_jump;
 			image_index = 1;
 		} else if (h_speed != 0) {
@@ -85,7 +81,6 @@ switch player_state {
 		image_index = 0;
 		break;
 }
-show_debug_message(player_state);
 
 #endregion
 ///////////////////////////////////////////////////////////////////////////////////////////////////

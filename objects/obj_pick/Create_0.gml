@@ -11,3 +11,6 @@ face = 0;
 hold_radius = PICK_RADIUS;
 center_x_offset = PICK_XOFF;
 center_y_offset = PICK_YOFF;
+hit_radius = HIT_RADIUS;
+
+target = instance_create_layer(x, y, "Player", obj_target);

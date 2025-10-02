@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"sh_h2o_init",
+  "name":"sh_h2o_init",
+  "parent":{
+    "name":"Shaders",
+    "path":"folders/Shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

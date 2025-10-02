@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"sh_h2o_fall_diagonal",
+  "name":"sh_h2o_fall_diagonal",
+  "parent":{
+    "name":"Shaders",
+    "path":"folders/Shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

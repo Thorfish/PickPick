@@ -1,6 +1,3 @@
-//Macros
-#macro DEBUG 0
-
 //Initialise Properties
 run_speed = PLAYER_RUN_SPEED;
 jump_speed = PLAYER_JUMP_SPEED;

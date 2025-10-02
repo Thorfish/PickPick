@@ -11,11 +11,10 @@ x = center_x+lengthdir_x(dist, dir);
 y = center_y+lengthdir_y(dist, dir);
 
 //Animation
-if(climber.image_xscale == 1) {
-	sprite_index = spr_pick;	
-} else {
-	sprite_index = spr_pick_rev;	
-}
-
+if(climber.image_xscale == 1) sprite_index = spr_pick;	
+else sprite_index = spr_pick_rev;
 face = floor(dir*image_xscale/30);
 image_index = face;
+
+target.x=x+lengthdir_x(hit_radius, dir);
+target.y=y+lengthdir_y(hit_radius, dir);
