@@ -35,7 +35,7 @@
                   ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
               ],"flexDirection":0,"height":{"unit":3,"value":64.0,},"justifyContent":1,"name":"Water_UI","nodeColour":4282958834,"resourceType":"GMRFlexPanel","resourceVersion":"2.0","width":{"unit":3,"value":64.0,},},
           ],"flexDirection":2,"gapColumn":2.0,"height":{"unit":1,"value":16.0,},"justifyContent":0,"layoutDirection":1,"marginLeft":{"unit":1,"value":5.0,},"marginTop":{"unit":1,"value":5.0,},"name":"Toolbar","nodeColour":4294087752,"positionRight":{"unit":0,"value":10.0,},"positionTop":{"unit":0,"value":10.0,},"resourceType":"GMRFlexPanel","resourceVersion":"2.0","width":{"unit":1,"value":320.0,},},
-      ],"flexDirection":2,"gridX":16,"gridY":16,"justifyContent":0,"name":"Brush_Config","nodeColour":4282970764,"resourceType":"GMRUILayer","resourceVersion":"2.0",},
+      ],"flexDirection":2,"gridX":8,"gridY":8,"justifyContent":0,"name":"Brush_Config","nodeColour":4282970764,"resourceType":"GMRUILayer","resourceVersion":"2.0",},
   ],
   "locked":false,
   "name":"RoomUI",

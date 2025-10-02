@@ -20,7 +20,9 @@ col = make_colour_rgb(init_temp*255, init_state*255, init_matter*255);
 
 ca_surface_a = initSurface(grid_w, grid_h, col, init_alpha);
 ca_surface_b = initSurface(grid_w, grid_h, col, init_alpha);
+pressure_surface = initSurface(grid_w, grid_h, c_black, init_alpha);
 render_surface = initSurface(grid_w, grid_h, c_black, 0.0);
+
 active_surface = ca_surface_a;
 
 

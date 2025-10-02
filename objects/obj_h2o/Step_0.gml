@@ -1,10 +1,11 @@
 if(surface_exists(ca_surface_a) && surface_exists(ca_surface_b) && surface_exists(render_surface)) {
 	add();
 	ca_step(sh_h2o_init)
+	ca_compute(pressure_surface, sh_h2o_pressure);
 	ca_step_depth(sh_h2o_fall_down, ca_fall_down_depth);
 	ca_step_depth(sh_h2o_fall_diagonal, ca_fall_diagonal_depth);
 	ca_step(sh_h2o_ice);
-	ca_render();
+	ca_compute(render_surface, sh_h2o_render);
 }
 
 function ca_step_depth(shader, it_depth) {
@@ -44,23 +45,23 @@ function ca_step(shader) {
 	active_surface = destination;
 }
 
-function ca_render() {
+function ca_compute(surface, shader) {
 	var source = active_surface;
-	var destination = render_surface;
+	var destination = surface;
 	
 	// Set shader
-	shader_set(sh_h2o_render);
+	shader_set(shader);
 
 	// bind texture to stage 0
 	var tex = surface_get_texture(source);
 	texture_set_stage(0, tex);
 
 	// Set texel uniform
-	var u = shader_get_uniform(sh_h2o_render, "u_texel");
+	var u = shader_get_uniform(shader, "u_texel");
 	shader_set_uniform_f(u, 1.0/grid_w, 1.0/grid_h);
 
 	// Set shader constant to read from stage 0
-	var s = shader_get_uniform(sh_h2o_render, "u_texture");
+	var s = shader_get_uniform(shader, "u_texture");
 	shader_set_uniform_i(s, 0);
 
 	// Draw source through shader into target

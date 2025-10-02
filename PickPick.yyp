@@ -61,6 +61,7 @@
     {"id":{"name":"sh_h2o_fall_down","path":"shaders/sh_h2o_fall_down/sh_h2o_fall_down.yy",},},
     {"id":{"name":"sh_h2o_ice","path":"shaders/sh_h2o_ice/sh_h2o_ice.yy",},},
     {"id":{"name":"sh_h2o_init","path":"shaders/sh_h2o_init/sh_h2o_init.yy",},},
+    {"id":{"name":"sh_h2o_pressure","path":"shaders/sh_h2o_pressure/sh_h2o_pressure.yy",},},
     {"id":{"name":"sh_h2o_render","path":"shaders/sh_h2o_render/sh_h2o_render.yy",},},
     {"id":{"name":"spr_air_ui","path":"sprites/spr_air_ui/spr_air_ui.yy",},},
     {"id":{"name":"spr_button_ui","path":"sprites/spr_button_ui/spr_button_ui.yy",},},
