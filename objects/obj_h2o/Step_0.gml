@@ -1,8 +1,11 @@
-add_snow();
-ca_step(sh_h2o_init)
-ca_step_depth(sh_h2o_fall_down, ca_fall_down_depth);
-ca_step_depth(sh_h2o_fall_diagonal, ca_fall_diagonal_depth);
-ca_render();
+if(surface_exists(ca_surface_a) && surface_exists(ca_surface_b) && surface_exists(render_surface)) {
+	add_snow();
+	ca_step(sh_h2o_init)
+	ca_step_depth(sh_h2o_fall_down, ca_fall_down_depth);
+	ca_step_depth(sh_h2o_fall_diagonal, ca_fall_diagonal_depth);
+	ca_step(sh_h2o_ice);
+	ca_render();
+}
 
 function ca_step_depth(shader, it_depth) {
 	for(var i=0; i<it_depth; i++) {
@@ -11,6 +14,7 @@ function ca_step_depth(shader, it_depth) {
 }
 
 function ca_step(shader) {
+
 	var source = active_surface;
 	var destination = (active_surface == ca_surface_a) ? ca_surface_b : ca_surface_a;
 	
