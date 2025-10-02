@@ -10,6 +10,9 @@ switch player_state {
 	case PlayerState.JUMP_SQUAT:
 		scr_player_jump_squat();
 		break;
+	case PlayerState.CLIMB:
+		scr_player_climb();
+		break;
 }
 
 //Update Position

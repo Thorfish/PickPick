@@ -1,10 +1,10 @@
 #macro DEBUG 0
 
 #region Player variables
-#macro PLAYER_FALL_SPEED 0.4
-#macro PLAYER_JUMP_SPEED 6
-#macro PLAYER_RUN_SPEED 4
-#macro PLAYER_JUMP_SQUAT 3
+#macro PLAYER_FALL_ACC 0.4
+#macro PLAYER_JUMP_IMPULSE 6
+#macro PLAYER_RUN_ACC 0.2
+#macro PLAYER_JUMP_SQUAT 5
 #endregion
 
 #region Tile variables
@@ -15,7 +15,8 @@
 #macro PICK_RADIUS 12
 #macro PICK_XOFF 0
 #macro PICK_YOFF -14
-#macro HIT_RADIUS 8
+#macro HIT_RADIUS 12
+#macro PART_RADIUS 12
 #endregion
 
 #region Snow Variables

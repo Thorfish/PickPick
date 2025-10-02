@@ -18,3 +18,20 @@ image_index = face;
 
 target.x=x+lengthdir_x(hit_radius, dir);
 target.y=y+lengthdir_y(hit_radius, dir);
+
+//////////////////////////////////////////////
+
+part_x=x+lengthdir_x(part_radius, dir);
+part_y=y+lengthdir_y(part_radius, dir);
+
+if(make_particles) {
+	var steps = max(1, ceil(point_distance(prev_part_x, prev_part_y, part_x, part_y) * interpolation_degree)); 
+	for (var i = 0; i < steps; i++) {
+	    var tx = lerp(prev_part_x, part_x, i / steps);
+	    var ty = lerp(prev_part_y, part_y, i / steps);
+	    part_particles_create(ps, tx, ty, pt_trail, part_count);
+	}
+}
+
+prev_part_x = part_x;
+prev_part_y = part_y;

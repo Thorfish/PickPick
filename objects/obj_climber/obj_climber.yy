@@ -11,8 +11,8 @@
   "name":"obj_climber",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Climber Related",
+    "path":"folders/Objects/Climber Related.yy",
   },
   "parentObjectId":null,
   "persistent":false,
