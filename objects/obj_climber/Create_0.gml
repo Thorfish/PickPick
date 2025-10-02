@@ -19,7 +19,7 @@ further_move_factor = 0.4;
 rising_fall_factor = 0.6;
 falling_fall_factor = 1.4;
 peak_fall_factor = 0.4;
-peak_window = 0.5;
+peak_window = 0.3;
 
 ground_friction = 0.2;
 air_friction = 0.05;

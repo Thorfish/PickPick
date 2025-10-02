@@ -1,5 +1,5 @@
 if(surface_exists(ca_surface_a) && surface_exists(ca_surface_b) && surface_exists(render_surface)) {
-	add_snow();
+	add();
 	ca_step(sh_h2o_init)
 	ca_step_depth(sh_h2o_fall_down, ca_fall_down_depth);
 	ca_step_depth(sh_h2o_fall_diagonal, ca_fall_diagonal_depth);
@@ -77,13 +77,20 @@ function draw_set_rgba(r, g, b, a) {
 	draw_set_alpha(a);
 }
 
-function add_snow() {
+function set_brush(temperature, state, matter, alpha) {
+	self.temperature=temperature;
+	self.state=state;
+	self.matter=matter;
+	self.alpha=alpha;
+}
+
+function add() {
 	if (mouse_check_button(mb_left)) {
 	    var mx = mouse_x;
 	    var my = mouse_y;
     
 	    surface_set_target(active_surface);
-	    draw_set_rgba(DEG0, FREE, SNOW, 1.0);
+	    draw_set_rgba(temperature, state, matter, alpha);
 	    draw_circle(mx, my, brush_radius, false);
 	    surface_reset_target();
 		draw_set_alpha(1);

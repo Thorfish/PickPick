@@ -2,8 +2,14 @@
 grid_w = room_width;
 grid_h = room_height;
 ca_fall_down_depth = 10;
-ca_fall_diagonal_depth=5;
+ca_fall_diagonal_depth=10;
 brush_radius = 2;
+
+//Brush Settings
+temperature = DEG0;
+state=FREE;
+matter=AIR;
+alpha=0.0;
 
 // Create surfaces
 init_temp=DEG0;

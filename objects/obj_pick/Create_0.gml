@@ -43,7 +43,7 @@ ps = part_system_create();
 part_system_depth(ps, -100);
 
 pt_trail = part_type_create();
-part_type_sprite(pt_trail, spr_pixel, false, false, false);
+part_type_sprite(pt_trail, spr_circle_small, false, false, false);
 part_type_size(pt_trail, size_min, size_max, size_inc, size_wig);
 part_type_alpha2(pt_trail, alpha_start, alpha_end);
 part_type_life(pt_trail, life_min, life_max);
